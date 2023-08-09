@@ -81,6 +81,7 @@ sock.close()
 
 The script sends a burst of 620 bytes to the AppleWin SSC TCP port.
 As the screenshot shows, most of those bytes are lost:
+
 ![old](https://github.com/oliverschmidt/ProTERM/assets/2664009/77bcad15-e4e1-44f6-b940-4dc14a230f12)
 
 ## ProTERM without interrupts
@@ -124,4 +125,5 @@ New: $0B
 ```
 
 With these patches applied, ProTERM doesn't have any problem with the same burst of 620 bytes, as the screenshot shows:
+
 ![new](https://github.com/oliverschmidt/ProTERM/assets/2664009/e73611c1-fe82-45fc-ab1c-bb210e30ff06)
