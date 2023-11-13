@@ -167,3 +167,8 @@ With these patches applied, the relevant source code looks like this (`$D6/$D7` 
 085B-   F0 C1       BEQ   $081E
 085D-   60          RTS
 ```
+
+Notes:
+
+* The 6551 is only checked for new data if the ringbuffer is completely empty.
+* More than 255 bytes are never written to the ringbuffer (although it has a size of 512 bytes).
