@@ -94,7 +94,7 @@ In the file `PT3`...
 ```
 Offset: $430A
 Old: $78 $A6 $D6 $A5 $D7
-New: $20 $2E $08 $80 $01
+New: $20 $4E $08 $80 $01
 
 Offset: $705A
 Old: $A9 $1D
@@ -112,12 +112,12 @@ Old: $88 $F0 $4A $29 $08 $F0 $22
 New: $8F $C9 $08 $D0 $22 $80 $00
 
 Offset: $1703
-Old: $2C $16 $C0 $10 $1C $DA $A6
-New: $80 $09 $A4 $D6 $88 $80 $EB
+Old: $2C $16
+New: $80 $09
 
 Offset: $171C
-Old: $B2 $D0 $8E $71 $C0 $FA $68 $40 $9C
-New: $C4 $D6 $D0 $D5 $A6 $D6 $A5 $D7 $60
+Old: $B2 $D0 $8E $71 $C0 $FA $68 $40 $9C $09 $C0 $DA $A6 $00 $9C $71 $C0 $25 $CE $92 $D6 $E6 $D6 $D0 $06
+New: $C4 $D6 $D0 $D5 $A6 $D6 $A5 $D7 $60 $A4 $D6 $88 $A6 $d6 $A5 $D7 $E4 $D9 $D0 $04 $C5 $DA $F0 $C1 $60
 
 Offset: $179C
 Old: $09
