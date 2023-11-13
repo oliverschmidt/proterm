@@ -87,7 +87,7 @@ As the screenshot shows, most of those bytes are lost:
 ## ProTERM without interrupts
 
 As described above, using interrupts is a big benefit for a true 6551 but rather a problem for a 6551 interface emulation.
-Therefore it is desriable to modify ProTERM to not use interrupts in the first place for scenarios with such an emulation.
+Therefore it is desirable to modify ProTERM to not use interrupts in the first place for scenarios with such an emulation.
 The following patches make ProTERM 3.1 not use interupts anymore:
 
 In the file `PT3`...
@@ -127,3 +127,43 @@ New: $0B
 With these patches applied, ProTERM doesn't have any problem with the same burst of 620 bytes, as the screenshot shows:
 
 ![new](https://github.com/oliverschmidt/ProTERM/assets/2664009/e73611c1-fe82-45fc-ab1c-bb210e30ff06)
+
+### Source Code
+
+With these patches applied, the relevant source code looks like this (`$D6/$D7` is the ringbuffer write pointer, `$D9/$DA` is the ringbuffer read pointer):
+
+```
+630A-   20 4E 08    JSR   $084E
+```
+```
+081E-   AD 89 C0    LDA   $C0n9
+0821-   29 8F       AND   #$8F
+0823-   C9 08       CMP   #$08
+0825-   D0 22       BNE   $0849
+0827-   80 00       BRA   $0829
+0829-   AD 88 C0    LDA   $C0n8
+082C-   80 09       BRA   $0837
+```
+```
+0837-   25 CE       AND   $CE
+0839-   92 D6       STA   ($D6)
+083B-   E6 D6       INC   $D6
+083D-   D0 06       BNE   $0845
+083F-   A5 D7       LDA   $D7
+0841-   49 01       EOR   #$01
+0843-   85 D7       STA   $D7
+0845-   C4 D6       CPY   $D6
+0847-   D0 D5       BNE   $081E
+0849-   A6 D6       LDX   $D6
+084B-   A5 D7       LDA   $D7
+084D-   60          RTS
+084E-   A4 D6       LDY   $D6
+0850-   88          DEY
+0851-   A6 D6       LDX   $D6
+0853-   A5 D7       LDA   $D7
+0855-   E4 D9       CPX   $D9
+0857-   D0 04       BNE   $085D
+0859-   C5 DA       CMP   $DA
+085B-   F0 C1       BEQ   $081E
+085D-   60          RTS
+```
